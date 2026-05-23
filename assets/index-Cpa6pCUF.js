@@ -1,0 +1,17 @@
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();function e(e,t,r,i,o,s){e.addEventListener(`input`,()=>{e.value=e.value.replaceAll(/[^0-9.]/g,``);let a=e.value;t.value=n(a,2),r.value=n(a,8),i.value=n(a,16)}),t.addEventListener(`input`,()=>{t.value=t.value.replaceAll(/[^0-1.]/g,``);let o=t.value;e.value=a(o,2).toString(),r.value=n(e.value,8),i.value=n(e.value,16)}),r.addEventListener(`input`,()=>{r.value=r.value.replaceAll(/[^0-7.]/g,``);let o=r.value;e.value=a(o,8).toString(),t.value=n(e.value,2),i.value=n(e.value,16)}),i.addEventListener(`input`,()=>{i.value=i.value.replaceAll(/[^0-9a-fA-F.]/g,``);let o=i.value;e.value=a(o,16).toString(),t.value=n(e.value,2),r.value=n(e.value,8)}),s.addEventListener(`click`,()=>{let e=o.value;/^\d+$/.test(e)&&(localStorage.setItem(`pr`,e.toString()),alert(`Precisione aggiornata`))})}var t=new Map([[`0`,0],[`1`,1],[`2`,2],[`3`,3],[`4`,4],[`5`,5],[`6`,6],[`7`,7],[`8`,8],[`9`,9],[`a`,10],[`b`,11],[`c`,12],[`d`,13],[`e`,14],[`f`,15]]);function n(e,t){if(e.includes(`.`)){let n=e.split(`.`);return`${r(Number.parseInt(n[0]),t)}.${i(Number.parseFloat(`0.${n[1]}`),t)}`}return r(Number.parseInt(e),t).toString()}function r(e,n){let r=``;for(;e>0;){let i=e%n;r=`${[...t.entries()].find(([e,t])=>t===i)?.[0]}${r}`,e=~~(e/n)}return r}function i(e,n){let r=``,i=Number.parseInt(localStorage.getItem(`pr`)??`7`);for(;e!=0&&r.length<i;){e*=n;let i=Math.floor(e),a=[...t.entries()].find(([e,t])=>t===i)?.[0];r+=a,e-=i}return r}function a(e,t){if(e.includes(`.`)){let n=e.split(`.`);return o(n[0],t)+s(n[1],t)}return o(e,t)}function o(e,n){let r=0;for(let i=0;i<e.length;i++){let a=e[i];r+=t.get(a.toLowerCase())*n**(e.length-i-1)}return r}function s(e,n){let r=0;for(let i=0;i<e.length;i++){let a=e[i];r+=t.get(a)*n**(-i-1)}return r}document.querySelector(`#app`).innerHTML=`
+    <div class="container">
+        <h1>Bin convertor</h1>
+        <input placeholder="Inserisci un numero decimale" id="Decimal" ></input>
+        <input placeholder="Inserisci un numero binario" id="bin" ></input>
+        <input placeholder="Inserisci un numero ottale" id="ott" ></input>
+        <input placeholder="Inserisci un numero esadecimale" id="hexa"></input>
+        <br/>
+        <div class="c2">
+            <input placeholder="Inserisci il numero di bit di precisione per la virgola " id="precision" ></input>
+            <button id="btn">Salva</button>
+        </div>
+
+    </div>
+
+
+`,e(document.querySelector(`#Decimal`),document.querySelector(`#bin`),document.querySelector(`#ott`),document.querySelector(`#hexa`),document.querySelector(`#precision`),document.querySelector(`#btn`));
